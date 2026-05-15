@@ -1,0 +1,23 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        email: "[email protected]"
+      }
+      description: "This API allows users to generate QR codes based on specified data and size. You can customize the output by providing the data to encode and the desired dimensions in pixels."
+      servers: [
+        {
+          description: "Production server"
+          url: "https://api.apgy.in"
+        }
+      ]
+      title: "QR Code Generator"
+      version: "1.0.0"
+    }
+  }
+}
+
+}

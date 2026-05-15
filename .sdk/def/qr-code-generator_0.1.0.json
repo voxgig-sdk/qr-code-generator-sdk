@@ -1,0 +1,91 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "QR Code Generator",
+    "description": "This API allows users to generate QR codes based on specified data and size. You can customize the output by providing the data to encode and the desired dimensions in pixels.",
+    "version": "1.0.0",
+    "contact": {
+      "email": "[email protected]"
+    }
+  },
+  "externalDocs": {
+    "description": "API Documentation",
+    "url": "https://api.apgy.in/qr/documentation.html"
+  },
+  "servers": [
+    {
+      "url": "https://api.apgy.in",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+    "/qr/": {
+      "get": {
+        "summary": "Generate QR Code",
+        "description": "Generates a QR code image with the specified data and size. The data parameter should be URL encoded if it contains spaces or special characters.",
+        "operationId": "generateQRCode",
+        "tags": [
+          "QR Code"
+        ],
+        "parameters": [
+          {
+            "name": "data",
+            "in": "query",
+            "description": "The data to encode in the QR code",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "TEXT"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "The size of the QR code in pixels (width and height)",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "example": 300
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully generated QR code image",
+            "content": {
+              "image/png": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameters - error message specifying the issue",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Error message describing the invalid parameter"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "QR Code",
+      "description": "QR code generation operations"
+    }
+  ]
+}

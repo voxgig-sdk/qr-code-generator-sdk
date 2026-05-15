@@ -1,0 +1,28 @@
+# BasicQrnFlow
+
+main: kit: flow: BasicQrnFlow:
+{
+  entity: "qrn",
+  kind: "basic",
+  name: "BasicQrnFlow",
+  step: [
+    {
+      input: {
+        ref: "qrn_ref01",
+        srcdatavar: "qrn_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-qrn_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicQrnFlow"
+}

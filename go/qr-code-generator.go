@@ -1,0 +1,50 @@
+package voxgigqrcodegeneratorsdk
+
+import (
+	"github.com/voxgig-sdk/qr-code-generator-sdk/core"
+	"github.com/voxgig-sdk/qr-code-generator-sdk/entity"
+	"github.com/voxgig-sdk/qr-code-generator-sdk/feature"
+	_ "github.com/voxgig-sdk/qr-code-generator-sdk/utility"
+)
+
+// Type aliases preserve external API.
+type QrCodeGeneratorSDK = core.QrCodeGeneratorSDK
+type Context = core.Context
+type Utility = core.Utility
+type Feature = core.Feature
+type Entity = core.Entity
+type QrCodeGeneratorEntity = core.QrCodeGeneratorEntity
+type FetcherFunc = core.FetcherFunc
+type Spec = core.Spec
+type Result = core.Result
+type Response = core.Response
+type Operation = core.Operation
+type Control = core.Control
+type QrCodeGeneratorError = core.QrCodeGeneratorError
+
+// BaseFeature from feature package.
+type BaseFeature = feature.BaseFeature
+
+func init() {
+	core.NewBaseFeatureFunc = func() core.Feature {
+		return feature.NewBaseFeature()
+	}
+	core.NewTestFeatureFunc = func() core.Feature {
+		return feature.NewTestFeature()
+	}
+	core.NewQrnEntityFunc = func(client *core.QrCodeGeneratorSDK, entopts map[string]any) core.QrCodeGeneratorEntity {
+		return entity.NewQrnEntity(client, entopts)
+	}
+}
+
+// Constructor re-exports.
+var NewQrCodeGeneratorSDK = core.NewQrCodeGeneratorSDK
+var TestSDK = core.TestSDK
+var NewContext = core.NewContext
+var NewSpec = core.NewSpec
+var NewResult = core.NewResult
+var NewResponse = core.NewResponse
+var NewOperation = core.NewOperation
+var MakeConfig = core.MakeConfig
+var NewBaseFeature = feature.NewBaseFeature
+var NewTestFeature = feature.NewTestFeature

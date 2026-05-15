@@ -1,0 +1,55 @@
+# Entity: qrn
+
+main: kit: entity: qrn: {
+
+  alias: field: {}
+
+  name: "qrn"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "TEXT"
+                kind: "query"
+                name: "data"
+                orig: "data"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: 300
+                kind: "query"
+                name: "size"
+                orig: "size"
+                reqd: true
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/qr/"
+          parts: [
+            "qr"
+          ]
+          select: {
+            exist: [
+              "data"
+              "size"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}
