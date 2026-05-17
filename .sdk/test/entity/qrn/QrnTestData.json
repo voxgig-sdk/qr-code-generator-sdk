@@ -1,9 +1,15 @@
 {
   "existing": {
     "qrn": {
-      "QRN00": {},
-      "QRN01": {},
-      "QRN02": {}
+      "QRN00": {
+        "id": "QRN00"
+      },
+      "QRN01": {
+        "id": "QRN01"
+      },
+      "QRN02": {
+        "id": "QRN02"
+      }
     }
   },
   "new": {

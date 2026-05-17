@@ -1,10 +1,10 @@
 package voxgigqrcodegeneratorsdk
 
 import (
-	"github.com/voxgig-sdk/qr-code-generator-sdk/core"
-	"github.com/voxgig-sdk/qr-code-generator-sdk/entity"
-	"github.com/voxgig-sdk/qr-code-generator-sdk/feature"
-	_ "github.com/voxgig-sdk/qr-code-generator-sdk/utility"
+	"github.com/voxgig-sdk/qr-code-generator-sdk/go/core"
+	"github.com/voxgig-sdk/qr-code-generator-sdk/go/entity"
+	"github.com/voxgig-sdk/qr-code-generator-sdk/go/feature"
+	_ "github.com/voxgig-sdk/qr-code-generator-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

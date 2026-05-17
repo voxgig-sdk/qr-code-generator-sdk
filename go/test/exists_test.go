@@ -3,7 +3,7 @@ package sdktest
 import (
 	"testing"
 
-	sdk "github.com/voxgig-sdk/qr-code-generator-sdk"
+	sdk "github.com/voxgig-sdk/qr-code-generator-sdk/go"
 )
 
 func TestExists(t *testing.T) {

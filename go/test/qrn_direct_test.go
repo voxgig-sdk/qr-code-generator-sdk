@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/qr-code-generator-sdk"
-	"github.com/voxgig-sdk/qr-code-generator-sdk/core"
+	sdk "github.com/voxgig-sdk/qr-code-generator-sdk/go"
+	"github.com/voxgig-sdk/qr-code-generator-sdk/go/core"
 )
 
 func TestQrnDirect(t *testing.T) {

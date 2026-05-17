@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/qr-code-generator-sdk"
-	"github.com/voxgig-sdk/qr-code-generator-sdk/core"
+	sdk "github.com/voxgig-sdk/qr-code-generator-sdk/go"
+	"github.com/voxgig-sdk/qr-code-generator-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/qr-code-generator-sdk/go/utility/struct"
 )
 
 func TestQrnEntity(t *testing.T) {
