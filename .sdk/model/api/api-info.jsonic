@@ -16,8 +16,21 @@ main: {
       ]
       title: "QR Code Generator"
       version: "1.0.0"
+      tagline: "Generate QR codes from arbitrary data at a configurable pixel size via a single HTTP GET"
+      homepage: "https://api.apgy.in"
+      docs_url: "https://freepublicapis.com/qr-code-generator"
+      about_md: `The QR Code Generator API is a small public service hosted at [api.apgy.in](https://api.apgy.in) that turns arbitrary input data into a QR code image. It is catalogued on [Free Public APIs](https://freepublicapis.com/qr-code-generator) alongside other lightweight, no-key utility APIs.
+
+What you get from the API:
+
+- A single \`GET /qr/\` endpoint that returns a QR code rendered from the supplied \`data\` value
+- A configurable output \`size\` so callers can request the pixel dimensions they need
+
+Operational notes: the upstream service has been flagged as intermittently unreachable on community trackers, so callers should expect to handle network errors and consider caching generated codes. No authentication, licence, or rate-limit information is published.`
+      entity_desc: {
+        qrn: "Represents a generated QR code image produced from the supplied data and size, served by the `GET /qr/` endpoint."
+      }
+      auth: false
     }
   }
-}
-
 }

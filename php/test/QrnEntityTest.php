@@ -85,7 +85,6 @@ function qrn_basic_setup($extra)
         "QRCODEGENERATOR_TEST_QRN_ENTID" => $idmap,
         "QRCODEGENERATOR_TEST_LIVE" => "FALSE",
         "QRCODEGENERATOR_TEST_EXPLAIN" => "FALSE",
-        "QRCODEGENERATOR_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -97,7 +96,6 @@ function qrn_basic_setup($extra)
     if ($env["QRCODEGENERATOR_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["QRCODEGENERATOR_APIKEY"],
             ],
             $extra ?? [],
         ]);
