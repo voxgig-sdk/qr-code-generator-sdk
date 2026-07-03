@@ -10,7 +10,7 @@ The Python SDK for the QrCodeGenerator API — an entity-oriented client followi
 
 ## Install
 ```bash
-pip install qr-code-generator-sdk
+pip install voxgig-sdk-qr-code-generator
 ```
 
 Or install from source:

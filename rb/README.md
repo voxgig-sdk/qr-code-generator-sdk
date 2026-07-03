@@ -10,13 +10,13 @@ The Ruby SDK for the QrCodeGenerator API — an entity-oriented client using idi
 
 ## Install
 ```bash
-gem install qr-code-generator-sdk
+gem install voxgig-sdk-qr-code-generator
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "qr-code-generator-sdk"
+gem "voxgig-sdk-qr-code-generator"
 ```
 
 Then run:

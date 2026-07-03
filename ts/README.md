@@ -10,7 +10,7 @@ The TypeScript SDK for the QrCodeGenerator API — a type-safe, entity-oriented 
 
 ## Install
 ```bash
-npm install qr-code-generator
+npm install @voxgig-sdk/qr-code-generator
 ```
 ## Tutorial: your first API call
 

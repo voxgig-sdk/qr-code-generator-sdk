@@ -10,7 +10,7 @@ The Lua SDK for the QrCodeGenerator API — an entity-oriented client using Lua 
 
 ## Install
 ```bash
-luarocks install qr-code-generator-sdk
+luarocks install voxgig-sdk-qr-code-generator
 ```
 
 If the module is not yet published, add the source directory to

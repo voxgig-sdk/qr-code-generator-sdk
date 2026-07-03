@@ -10,7 +10,7 @@ The PHP SDK for the QrCodeGenerator API — an entity-oriented client using PHP 
 
 ## Install
 ```bash
-composer require voxgig/qr-code-generator-sdk
+composer require voxgig-sdk/qr-code-generator
 ```
 
 
