@@ -113,6 +113,7 @@ function basicSetup(extra?: any) {
     'QR_CODE_GENERATOR_TEST_QRN_ENTID': idmap,
     'QR_CODE_GENERATOR_TEST_LIVE': 'FALSE',
     'QR_CODE_GENERATOR_TEST_EXPLAIN': 'FALSE',
+    'QR_CODE_GENERATOR_APIKEY': 'NONE',
   })
 
   idmap = env['QR_CODE_GENERATOR_TEST_QRN_ENTID']
@@ -122,6 +123,7 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new QrCodeGeneratorSDK(merge([
       {
+        apikey: env.QR_CODE_GENERATOR_APIKEY,
       },
       extra
     ]))

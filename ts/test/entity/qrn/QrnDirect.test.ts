@@ -79,12 +79,14 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'QRCODEGENERATOR_TEST_QRN_ENTID': {},
     'QRCODEGENERATOR_TEST_LIVE': 'FALSE',
+    'QRCODEGENERATOR_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.QRCODEGENERATOR_TEST_LIVE
 
   if (live) {
     const client = new QrCodeGeneratorSDK({
+      apikey: env.QRCODEGENERATOR_APIKEY,
     })
 
     let idmap: any = env['QRCODEGENERATOR_TEST_QRN_ENTID']

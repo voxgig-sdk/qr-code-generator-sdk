@@ -106,12 +106,14 @@ func qrnDirectSetup(mockres any) *qrnDirectSetupResult {
 	env := envOverride(map[string]any{
 		"QRCODEGENERATOR_TEST_QRN_ENTID": map[string]any{},
 		"QRCODEGENERATOR_TEST_LIVE":    "FALSE",
+		"QRCODEGENERATOR_APIKEY":       "NONE",
 	})
 
 	live := env["QRCODEGENERATOR_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
+			"apikey": env["QRCODEGENERATOR_APIKEY"],
 		}
 		client := sdk.NewQrCodeGeneratorSDK(mergedOpts)
 

@@ -68,12 +68,14 @@ def qrn_direct_setup(mockres)
   env = Runner.env_override({
     "QRCODEGENERATOR_TEST_QRN_ENTID" => {},
     "QRCODEGENERATOR_TEST_LIVE" => "FALSE",
+    "QRCODEGENERATOR_APIKEY" => "NONE",
   })
 
   live = env["QRCODEGENERATOR_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
+      "apikey" => env["QRCODEGENERATOR_APIKEY"],
     }
     client = QrCodeGeneratorSDK.new(merged_opts)
     return {

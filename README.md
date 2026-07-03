@@ -1,19 +1,8 @@
 # QrCodeGenerator SDK
 
-Generate QR codes from arbitrary data at a configurable pixel size via a single HTTP GET
+QR Code Generator client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About QR Code Generator
-
-The QR Code Generator API is a small public service hosted at [api.apgy.in](https://api.apgy.in) that turns arbitrary input data into a QR code image. It is catalogued on [Free Public APIs](https://freepublicapis.com/qr-code-generator) alongside other lightweight, no-key utility APIs.
-
-What you get from the API:
-
-- A single `GET /qr/` endpoint that returns a QR code rendered from the supplied `data` value
-- A configurable output `size` so callers can request the pixel dimensions they need
-
-Operational notes: the upstream service has been flagged as intermittently unreachable on community trackers, so callers should expect to handle network errors and consider caching generated codes. No authentication, licence, or rate-limit information is published.
 
 ## Try it
 
@@ -47,27 +36,31 @@ gem install qr-code-generator-sdk
 luarocks install qr-code-generator-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { QrCodeGeneratorSDK } from 'qr-code-generator'
 
-const client = new QrCodeGeneratorSDK({})
+const client = new QrCodeGeneratorSDK({
+  apikey: process.env.QR-CODE-GENERATOR_APIKEY,
+})
 
+// Load qrn data
+const qrn = await client.Qrn().load({})
+console.log(qrn.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -97,7 +90,7 @@ The API exposes one entity:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Qrn** | Represents a generated QR code image produced from the supplied data and size, served by the `GET /qr/` endpoint. | `/qr/` |
+| **Qrn** |  | `/qr/` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -107,15 +100,17 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from qrcodegenerator_sdk import QrCodeGeneratorSDK
 
-client = QrCodeGeneratorSDK({})
+client = QrCodeGeneratorSDK({
+    "apikey": os.environ.get("QR-CODE-GENERATOR_APIKEY"),
+})
 
 
 # Load a specific qrn
-qrn, err = client.Qrn(None).load(
-    {"id": "example_id"}, None
-)
+qrn, err = client.Qrn().load({"id": "example_id"})
+print(qrn)
 ```
 
 ### PHP
@@ -124,13 +119,14 @@ qrn, err = client.Qrn(None).load(
 <?php
 require_once 'qrcodegenerator_sdk.php';
 
-$client = new QrCodeGeneratorSDK([]);
+$client = new QrCodeGeneratorSDK([
+    "apikey" => getenv("QR-CODE-GENERATOR_APIKEY"),
+]);
 
 
 // Load a specific qrn
-[$qrn, $err] = $client->Qrn(null)->load(
-    ["id" => "example_id"], null
-);
+[$qrn, $err] = $client->Qrn()->load(["id" => "example_id"]);
+print_r($qrn);
 ```
 
 ### Golang
@@ -138,8 +134,13 @@ $client = new QrCodeGeneratorSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/qr-code-generator-sdk/go"
 
-client := sdk.NewQrCodeGeneratorSDK(map[string]any{})
+client := sdk.NewQrCodeGeneratorSDK(map[string]any{
+    "apikey": os.Getenv("QR-CODE-GENERATOR_APIKEY"),
+})
 
+// Load qrn data
+qrn, err := client.Qrn(nil).Load(map[string]any{}, nil)
+fmt.Println(qrn)
 ```
 
 ### Ruby
@@ -147,13 +148,14 @@ client := sdk.NewQrCodeGeneratorSDK(map[string]any{})
 ```ruby
 require_relative "QrCodeGenerator_sdk"
 
-client = QrCodeGeneratorSDK.new({})
+client = QrCodeGeneratorSDK.new({
+  "apikey" => ENV["QR-CODE-GENERATOR_APIKEY"],
+})
 
 
 # Load a specific qrn
-qrn, err = client.Qrn(nil).load(
-  { "id" => "example_id" }, nil
-)
+qrn, err = client.Qrn().load({ "id" => "example_id" })
+puts qrn
 ```
 
 ### Lua
@@ -161,13 +163,14 @@ qrn, err = client.Qrn(nil).load(
 ```lua
 local sdk = require("qr-code-generator_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("QR-CODE-GENERATOR_APIKEY"),
+})
 
 
 -- Load a specific qrn
-local qrn, err = client:Qrn(nil):load(
-  { id = "example_id" }, nil
-)
+local qrn, err = client:Qrn():load({ id = "example_id" })
+print(qrn)
 ```
 
 ## Unit testing in offline mode
@@ -186,25 +189,21 @@ const result = await client.Qrn().load({ id: 'test01' })
 ### Python
 
 ```python
-client = QrCodeGeneratorSDK.test(None, None)
-result, err = client.Qrn(None).load(
-    {"id": "test01"}, None
-)
+client = QrCodeGeneratorSDK.test()
+result, err = client.Qrn().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = QrCodeGeneratorSDK::test(null, null);
-[$result, $err] = $client->Qrn(null)->load(
-    ["id" => "test01"], null
-);
+$client = QrCodeGeneratorSDK::test();
+[$result, $err] = $client->Qrn()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Qrn(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -213,19 +212,15 @@ result, err := client.Qrn(nil).Load(
 ### Ruby
 
 ```ruby
-client = QrCodeGeneratorSDK.test(nil, nil)
-result, err = client.Qrn(nil).load(
-  { "id" => "test01" }, nil
-)
+client = QrCodeGeneratorSDK.test
+result, err = client.Qrn().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Qrn(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Qrn():load({ id = "test01" })
 ```
 
 ## How it works
@@ -329,11 +324,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the QR Code Generator
-
-- Upstream: [https://api.apgy.in](https://api.apgy.in)
-- API docs: [https://freepublicapis.com/qr-code-generator](https://freepublicapis.com/qr-code-generator)
 
 ---
 

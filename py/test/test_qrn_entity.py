@@ -91,6 +91,7 @@ def _qrn_basic_setup(extra):
         "QRCODEGENERATOR_TEST_QRN_ENTID": idmap,
         "QRCODEGENERATOR_TEST_LIVE": "FALSE",
         "QRCODEGENERATOR_TEST_EXPLAIN": "FALSE",
+        "QRCODEGENERATOR_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -101,6 +102,7 @@ def _qrn_basic_setup(extra):
     if env.get("QRCODEGENERATOR_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
+                "apikey": env.get("QRCODEGENERATOR_APIKEY"),
             },
             extra or {},
         ])
