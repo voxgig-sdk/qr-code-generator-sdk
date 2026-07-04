@@ -85,7 +85,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## QrnEntity
 
 ```php
-$qrn = $client->qrn();
+$qrn = $client->Qrn();
 ```
 
 ### Operations
@@ -95,7 +95,7 @@ $qrn = $client->qrn();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->qrn()->load(["id" => "qrn_id"]);
+$result = $client->Qrn()->load(["id" => "qrn_id"]);
 ```
 
 ### Common Methods

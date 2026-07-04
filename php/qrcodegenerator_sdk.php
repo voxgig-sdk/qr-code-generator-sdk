@@ -233,10 +233,10 @@ class QrCodeGeneratorSDK
 
     private $_qrn = null;
 
-    // Idiomatic facade: $client->qrn()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Qrn() (PHP method
-    // names are case-insensitive).
-    public function qrn($data = null)
+    // Canonical facade: $client->Qrn()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->qrn()
+    // resolves here too.
+    public function Qrn($data = null)
     {
         require_once __DIR__ . '/entity/qrn_entity.php';
         if ($data === null) {

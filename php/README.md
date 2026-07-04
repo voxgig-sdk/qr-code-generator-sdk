@@ -33,9 +33,10 @@ $client = new QrCodeGeneratorSDK();
 
 ```php
 try {
-    $result = $client->qrn()->load(["id" => "example_id"]);
-    print_r($result);
-} catch (\Exception $err) {
+    // load() returns the bare Qrn record (throws on error).
+    $qrn = $client->Qrn()->load(["id" => "example_id"]);
+    print_r($qrn);
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -81,13 +82,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = QrCodeGeneratorSDK::test();
+$client = QrCodeGeneratorSDK::test([
+    "entity" => ["qrn" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->qrn()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$qrn = $client->Qrn()->load(["id" => "test01"]);
+print_r($qrn);
 ```
 
 ### Use a custom fetch function
@@ -222,7 +227,7 @@ API path: `/qr/`
 
 ### Qrn
 
-Create an instance: `const qrn = client.qrn`
+Create an instance: `$qrn = $client->Qrn();`
 
 #### Operations
 
@@ -232,8 +237,9 @@ Create an instance: `const qrn = client.qrn`
 
 #### Example: Load
 
-```ts
-const qrn = await client.qrn.load({ id: 'qrn_id' })
+```php
+// load() returns the bare Qrn record (throws on error).
+$qrn = $client->Qrn()->load(["id" => "qrn_id"]);
 ```
 
 
@@ -308,7 +314,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$qrn = $client->qrn();
+$qrn = $client->Qrn();
 $qrn->load(["id" => "example_id"]);
 
 // $qrn->dataGet() now returns the loaded qrn data

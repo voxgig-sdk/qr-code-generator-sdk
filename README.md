@@ -26,9 +26,9 @@ import { QrCodeGeneratorSDK } from '@voxgig-sdk/qr-code-generator'
 
 const client = new QrCodeGeneratorSDK()
 
-// Load qrn data
-const qrn = await client.qrn.load({})
-console.log(qrn.data)
+// Load qrn data (returns a Qrn)
+const qrn = await client.Qrn().load()
+console.log(qrn)
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -84,8 +84,8 @@ from qrcodegenerator_sdk import QrCodeGeneratorSDK
 client = QrCodeGeneratorSDK()
 
 
-# Load a specific qrn
-qrn = client.qrn.load({"id": "example_id"})
+# Load a specific qrn (returns the record, raises on error)
+qrn = client.Qrn().load({"id": "example_id"})
 print(qrn)
 ```
 
@@ -98,8 +98,8 @@ require_once 'qrcodegenerator_sdk.php';
 $client = new QrCodeGeneratorSDK();
 
 
-// Load a specific qrn
-$qrn = $client->qrn()->load(["id" => "example_id"]);
+// Load a specific qrn (returns the bare record; throws on error)
+$qrn = $client->Qrn()->load(["id" => "example_id"]);
 print_r($qrn);
 ```
 
@@ -123,8 +123,8 @@ require_relative "QrCodeGenerator_sdk"
 client = QrCodeGeneratorSDK.new
 
 
-# Load a specific qrn
-qrn = client.qrn.load({ "id" => "example_id" })
+# Load a specific qrn (returns the bare record; raises on error)
+qrn = client.Qrn.load({ "id" => "example_id" })
 puts qrn
 ```
 
@@ -137,7 +137,7 @@ local client = sdk.new()
 
 
 -- Load a specific qrn
-local qrn, err = client:qrn():load({ id = "example_id" })
+local qrn, err = client:Qrn():load({ id = "example_id" })
 print(qrn)
 ```
 
@@ -150,22 +150,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = QrCodeGeneratorSDK.test()
-const result = await client.qrn.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const qrn = await client.Qrn().load({ id: 'test01' })
+// qrn is a bare Qrn populated with mock data
+console.log(qrn)
 ```
 
 ### Python
 
 ```python
 client = QrCodeGeneratorSDK.test()
-result = client.qrn.load({"id": "test01"})
+qrn = client.Qrn().load({"id": "test01"})
+print(qrn)
 ```
 
 ### PHP
 
 ```php
-$client = QrCodeGeneratorSDK::test();
-$result = $client->qrn()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = QrCodeGeneratorSDK::test([
+    "entity" => ["qrn" => ["test01" => ["id" => "test01"]]],
+]);
+$qrn = $client->Qrn()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -180,15 +185,18 @@ result, err := client.Qrn(nil).Load(
 ### Ruby
 
 ```ruby
-client = QrCodeGeneratorSDK.test
-result = client.qrn.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = QrCodeGeneratorSDK.test({
+  "entity" => { "qrn" => { "test01" => { "id" => "test01" } } },
+})
+qrn = client.Qrn.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:qrn():load({ id = "test01" })
+local result, err = client:Qrn():load({ id = "test01" })
 ```
 
 ## How it works
@@ -236,6 +244,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

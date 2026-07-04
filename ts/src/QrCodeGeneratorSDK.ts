@@ -204,14 +204,7 @@ class QrCodeGeneratorSDK {
 
 
 
-  _qrn?: QrnEntity
-
-  // Idiomatic facade: `client.qrn.list()` / `client.qrn.load({ id })`.
-  get qrn(): QrnEntity {
-    return (this._qrn ??= new QrnEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.qrn` instead. */
+  // Entity access: `client.Qrn().list()` / `client.Qrn().load({ id })`.
   Qrn(data?: any) {
     const self = this
     return new QrnEntity(self,data)

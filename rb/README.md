@@ -32,8 +32,9 @@ client = QrCodeGeneratorSDK.new
 
 ```ruby
 begin
-  result = client.qrn.load({ "id" => "example_id" })
-  puts result
+  # load returns the bare Qrn record (raises on error).
+  qrn = client.Qrn.load({ "id" => "example_id" })
+  puts qrn
 rescue => err
   warn "load failed: #{err}"
 end
@@ -80,13 +81,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = QrCodeGeneratorSDK.test
+client = QrCodeGeneratorSDK.test({
+  "entity" => { "qrn" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.qrn.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+qrn = client.Qrn.load({ "id" => "test01" })
+puts qrn
 ```
 
 ### Use a custom fetch function
@@ -217,7 +222,7 @@ API path: `/qr/`
 
 ### Qrn
 
-Create an instance: `const qrn = client.qrn`
+Create an instance: `qrn = client.Qrn`
 
 #### Operations
 
@@ -227,8 +232,9 @@ Create an instance: `const qrn = client.qrn`
 
 #### Example: Load
 
-```ts
-const qrn = await client.qrn.load({ id: 'qrn_id' })
+```ruby
+# load returns the bare Qrn record (raises on error).
+qrn = client.Qrn.load({ "id" => "qrn_id" })
 ```
 
 
@@ -303,7 +309,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-qrn = client.qrn
+qrn = client.Qrn
 qrn.load({ "id" => "example_id" })
 
 # qrn.data_get now returns the loaded qrn data

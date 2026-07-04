@@ -220,25 +220,15 @@ class QrCodeGeneratorSDK:
         }
 
 
-    @property
-    def qrn(self):
-        """Idiomatic facade: client.qrn.list() / client.qrn.load({"id": ...})."""
-        from entity.qrn_entity import QrnEntity
-        cached = getattr(self, "_qrn", None)
-        if cached is None:
-            cached = QrnEntity(self, None)
-            self._qrn = cached
-        return cached
-
-    def Qrn(self, data=None):
-        # Deprecated: use client.qrn instead.
+    def Qrn(self, data=None) -> "QrnEntity":
+        """Entity factory: client.Qrn().list({}) / client.Qrn().load({"id": ...})."""
         from entity.qrn_entity import QrnEntity
         return QrnEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "QrCodeGeneratorSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -258,3 +248,9 @@ class QrCodeGeneratorSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.qrn_entity import QrnEntity

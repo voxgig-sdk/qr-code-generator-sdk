@@ -33,10 +33,12 @@ client = QrCodeGeneratorSDK()
 
 ### 3. Load a qrn
 
+`load()` returns the bare record (a `dict`) and raises on error.
+
 ```python
 try:
-    result = client.qrn.load({"id": "example_id"})
-    print(result)
+    qrn = client.Qrn().load({"id": "example_id"})
+    print(qrn)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -84,8 +86,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = QrCodeGeneratorSDK.test()
 
-result = client.qrn.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+qrn = client.Qrn().load({"id": "test01"})
+# qrn contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -217,7 +220,7 @@ API path: `/qr/`
 
 ### Qrn
 
-Create an instance: `const qrn = client.qrn`
+Create an instance: `qrn = client.Qrn()`
 
 #### Operations
 
@@ -227,8 +230,8 @@ Create an instance: `const qrn = client.qrn`
 
 #### Example: Load
 
-```ts
-const qrn = await client.qrn.load({ id: 'qrn_id' })
+```python
+qrn = client.Qrn().load({"id": "qrn_id"})
 ```
 
 
@@ -302,7 +305,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-qrn = client.qrn
+qrn = client.Qrn()
 qrn.load({"id": "example_id"})
 
 # qrn.data_get() now returns the loaded qrn data

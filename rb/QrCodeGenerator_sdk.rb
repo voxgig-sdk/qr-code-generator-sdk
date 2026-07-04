@@ -208,13 +208,7 @@ class QrCodeGeneratorSDK
   end
 
 
-  # Idiomatic facade: client.qrn.list / client.qrn.load({ "id" => ... })
-  def qrn
-    require_relative 'entity/qrn_entity'
-    @qrn ||= QrnEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.qrn instead.
+  # Canonical facade: client.Qrn.list / client.Qrn.load({ "id" => ... })
   def Qrn(data = nil)
     require_relative 'entity/qrn_entity'
     QrnEntity.new(self, data)

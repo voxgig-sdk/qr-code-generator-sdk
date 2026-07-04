@@ -109,7 +109,7 @@ Alias for `QrCodeGeneratorSDK.test()`.
 ## QrnEntity
 
 ```ts
-const qrn = client.qrn
+const qrn = client.Qrn()
 ```
 
 ### Operations
@@ -119,7 +119,7 @@ const qrn = client.qrn
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.qrn.load({ id: 'qrn_id' })
+const result = await client.Qrn().load({ id: 'qrn_id' })
 ```
 
 ### Common Methods

@@ -83,7 +83,7 @@ same parameters as `direct()`.
 ## QrnEntity
 
 ```lua
-local qrn = client:qrn(nil)
+local qrn = client:Qrn(nil)
 ```
 
 ### Operations
@@ -93,7 +93,7 @@ local qrn = client:qrn(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:qrn():load({ id = "qrn_id" })
+local result, err = client:Qrn():load({ id = "qrn_id" })
 ```
 
 ### Common Methods

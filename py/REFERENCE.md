@@ -80,7 +80,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## QrnEntity
 
 ```python
-qrn = client.qrn
+qrn = client.Qrn()
 ```
 
 ### Operations
@@ -90,7 +90,7 @@ qrn = client.qrn
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.qrn.load({"id": "qrn_id"})
+result = client.Qrn().load({"id": "qrn_id"})
 ```
 
 ### Common Methods
