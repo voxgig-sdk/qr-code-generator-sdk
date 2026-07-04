@@ -2,6 +2,8 @@
 
 import { QrnEntity } from './entity/QrnEntity'
 
+export type * from './QrCodeGeneratorTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -202,6 +204,14 @@ class QrCodeGeneratorSDK {
 
 
 
+  _qrn?: QrnEntity
+
+  // Idiomatic facade: `client.qrn.list()` / `client.qrn.load({ id })`.
+  get qrn(): QrnEntity {
+    return (this._qrn ??= new QrnEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.qrn` instead. */
   Qrn(data?: any) {
     const self = this
     return new QrnEntity(self,data)

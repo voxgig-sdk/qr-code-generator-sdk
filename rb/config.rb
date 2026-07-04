@@ -15,9 +15,6 @@ module QrCodeGeneratorConfig
       },
       "options" => {
         "base" => "https://api.apgy.in",
-        "auth" => {
-          "prefix" => "Bearer",
-        },
         "headers" => {
           "content-type" => "application/json",
         },

@@ -49,8 +49,7 @@ class TestQrnEntity:
         # LOAD
         qrn_ref01_ent = client.Qrn(None)
         qrn_ref01_match_dt0 = {}
-        qrn_ref01_data_dt0_loaded, err = qrn_ref01_ent.load(qrn_ref01_match_dt0, None)
-        assert err is None
+        qrn_ref01_data_dt0_loaded = qrn_ref01_ent.load(qrn_ref01_match_dt0, None)
         assert qrn_ref01_data_dt0_loaded is not None
 
 
@@ -91,7 +90,6 @@ def _qrn_basic_setup(extra):
         "QRCODEGENERATOR_TEST_QRN_ENTID": idmap,
         "QRCODEGENERATOR_TEST_LIVE": "FALSE",
         "QRCODEGENERATOR_TEST_EXPLAIN": "FALSE",
-        "QRCODEGENERATOR_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -102,7 +100,6 @@ def _qrn_basic_setup(extra):
     if env.get("QRCODEGENERATOR_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("QRCODEGENERATOR_APIKEY"),
             },
             extra or {},
         ])

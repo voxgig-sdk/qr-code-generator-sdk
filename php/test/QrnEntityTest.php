@@ -49,8 +49,7 @@ class QrnEntityTest extends TestCase
         // LOAD
         $qrn_ref01_ent = $client->Qrn(null);
         $qrn_ref01_match_dt0 = [];
-        [$qrn_ref01_data_dt0_loaded, $err] = $qrn_ref01_ent->load($qrn_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $qrn_ref01_data_dt0_loaded = $qrn_ref01_ent->load($qrn_ref01_match_dt0, null);
         $this->assertNotNull($qrn_ref01_data_dt0_loaded);
 
     }
@@ -85,7 +84,6 @@ function qrn_basic_setup($extra)
         "QRCODEGENERATOR_TEST_QRN_ENTID" => $idmap,
         "QRCODEGENERATOR_TEST_LIVE" => "FALSE",
         "QRCODEGENERATOR_TEST_EXPLAIN" => "FALSE",
-        "QRCODEGENERATOR_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -97,7 +95,6 @@ function qrn_basic_setup($extra)
     if ($env["QRCODEGENERATOR_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["QRCODEGENERATOR_APIKEY"],
             ],
             $extra ?? [],
         ]);

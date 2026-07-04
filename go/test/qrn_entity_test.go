@@ -117,7 +117,6 @@ func qrnBasicSetup(extra map[string]any) *entityTestSetup {
 		"QRCODEGENERATOR_TEST_QRN_ENTID": idmap,
 		"QRCODEGENERATOR_TEST_LIVE":      "FALSE",
 		"QRCODEGENERATOR_TEST_EXPLAIN":   "FALSE",
-		"QRCODEGENERATOR_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["QRCODEGENERATOR_TEST_QRN_ENTID"])
@@ -128,7 +127,6 @@ func qrnBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["QRCODEGENERATOR_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["QRCODEGENERATOR_APIKEY"],
 			},
 			extra,
 		})

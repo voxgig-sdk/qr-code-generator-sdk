@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Qrn,
+  QrnLoadMatch,
+} from '../QrCodeGeneratorTypes'
 
 // TODO: needs Entity superclass
-class QrnEntity extends QrCodeGeneratorEntityBase {
+class QrnEntity extends QrCodeGeneratorEntityBase<Qrn> {
 
   constructor(client: QrCodeGeneratorSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class QrnEntity extends QrCodeGeneratorEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: QrnLoadMatch, ctrl?: Control): Promise<Qrn> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class QrnEntity extends QrCodeGeneratorEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Qrn> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

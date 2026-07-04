@@ -245,6 +245,9 @@ func (sdk *QrCodeGeneratorSDK) Direct(fetchargs map[string]any) (map[string]any,
 }
 
 
+// Qrn returns a Qrn entity bound to this client.
+// Idiomatic usage: client.Qrn(nil).List(nil, nil) or
+// client.Qrn(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *QrCodeGeneratorSDK) Qrn(data map[string]any) QrCodeGeneratorEntity {
 	return NewQrnEntityFunc(sdk, data)
 }

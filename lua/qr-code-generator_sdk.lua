@@ -244,6 +244,19 @@ end
 
 
 
+-- Idiomatic facade: client:qrn():list() / client:qrn():load({ id = ... })
+function QrCodeGeneratorSDK:qrn(data)
+  local EntityMod = require("entity.qrn_entity")
+  if data == nil then
+    if self._qrn == nil then
+      self._qrn = EntityMod.new(self, nil)
+    end
+    return self._qrn
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:qrn() instead.
 function QrCodeGeneratorSDK:Qrn(data)
   local EntityMod = require("entity.qrn_entity")
   return EntityMod.new(self, data)

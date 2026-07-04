@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch QrnLoadMatch
+---@param ctrl? table
+---@return Qrn
+---@return string? err
 function QrnEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

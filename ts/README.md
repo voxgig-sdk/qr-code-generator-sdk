@@ -9,9 +9,12 @@ The TypeScript SDK for the QrCodeGenerator API — a type-safe, entity-oriented 
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/qr-code-generator
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/qr-code-generator-sdk/releases](https://github.com/voxgig-sdk/qr-code-generator-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,15 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { QrCodeGeneratorSDK } from 'qr-code-generator'
+import { QrCodeGeneratorSDK } from '@voxgig-sdk/qr-code-generator'
 
-const client = new QrCodeGeneratorSDK({
-  apikey: process.env.QR-CODE-GENERATOR_APIKEY,
-})
+const client = new QrCodeGeneratorSDK()
 ```
 
 ### 3. Load a qrn
 
 ```ts
-const result = await client.Qrn().load({ id: 'example_id' })
+const result = await client.qrn.load({ id: 'example_id' })
 
 if (result.ok) {
   console.log(result.data)
@@ -79,7 +80,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = QrCodeGeneratorSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.qrn.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -87,7 +88,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new QrCodeGeneratorSDK({ apikey: '...' })
+const client = new QrCodeGeneratorSDK()
 const testClient = client.tester()
 ```
 
@@ -96,7 +97,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.qrn
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -123,7 +124,6 @@ const logger = {
 }
 
 const client = new QrCodeGeneratorSDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -133,8 +133,7 @@ const client = new QrCodeGeneratorSDK({
 Create a `.env.local` file at the project root:
 
 ```
-QR-CODE-GENERATOR_TEST_LIVE=TRUE
-QR-CODE-GENERATOR_APIKEY=<your-key>
+QR_CODE_GENERATOR_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -152,7 +151,6 @@ cd ts && npm test
 
 ```ts
 new QrCodeGeneratorSDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -163,7 +161,6 @@ new QrCodeGeneratorSDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -265,7 +262,7 @@ API path: `/qr/`
 
 ### Qrn
 
-Create an instance: `const qrn = client.Qrn()`
+Create an instance: `const qrn = client.qrn`
 
 #### Operations
 
@@ -276,7 +273,7 @@ Create an instance: `const qrn = client.Qrn()`
 #### Example: Load
 
 ```ts
-const qrn = await client.Qrn().load({ id: 'qrn_id' })
+const qrn = await client.qrn.load({ id: 'qrn_id' })
 ```
 
 
@@ -337,7 +334,7 @@ qr-code-generator/
 Import the SDK from the package root:
 
 ```ts
-import { QrCodeGeneratorSDK } from 'qr-code-generator'
+import { QrCodeGeneratorSDK } from '@voxgig-sdk/qr-code-generator'
 ```
 
 ### Entity state
@@ -347,11 +344,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const qrn = client.qrn
+await qrn.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// qrn.data() now returns the loaded qrn data
+// qrn.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration
