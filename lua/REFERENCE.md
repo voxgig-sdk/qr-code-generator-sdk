@@ -93,7 +93,7 @@ local qrn = client:Qrn(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Qrn():load({ id = "qrn_id" })
+local result, err = client:Qrn():load()
 ```
 
 ### Common Methods

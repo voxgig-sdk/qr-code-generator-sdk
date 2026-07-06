@@ -8,7 +8,7 @@ Complete API reference for the QrCodeGenerator Python SDK.
 ### Constructor
 
 ```python
-from qr-code-generator_sdk import QrCodeGeneratorSDK
+from qrcodegenerator_sdk import QrCodeGeneratorSDK
 
 client = QrCodeGeneratorSDK(options)
 ```
@@ -90,7 +90,7 @@ qrn = client.Qrn()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Qrn().load({"id": "qrn_id"})
+result = client.Qrn().load()
 ```
 
 ### Common Methods

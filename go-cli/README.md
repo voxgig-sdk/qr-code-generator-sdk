@@ -16,7 +16,6 @@ go build -o qr-code-generator-cli ./...
 
 ```sh
 # One-shot: arguments form a single AQL expression
-./qr-code-generator-cli list qrn
 ./qr-code-generator-cli load 1 qrn
 ./qr-code-generator-cli load '{id:1}' qrn
 
@@ -28,9 +27,7 @@ go build -o qr-code-generator-cli ./...
 
 | Word     | Signatures                                   | Description                |
 |----------|----------------------------------------------|----------------------------|
-| `list`   | `[entity]` · `[query entity]`                | List records               |
 | `load`   | `[entity]` · `[query entity]`                | Load a single record       |
-| `update` | `[entity]` · `[query entity]`                | Update a record            |
 
 `query` is either a Map (`{id:1}`) or a Scalar (`1`, treated as `{id:1}`).
 `entity` is one of the SDK's entity names (auto-quoted as an atom).

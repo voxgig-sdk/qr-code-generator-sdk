@@ -12,8 +12,7 @@ import "encoding/json"
 type Qrn struct {
 }
 
-// QrnLoadMatch mirrors the qrn fields as an all-optional match
-// filter (Go analog of Partial<Qrn>).
+// QrnLoadMatch is the typed request payload for Qrn.LoadTyped.
 type QrnLoadMatch struct {
 }
 

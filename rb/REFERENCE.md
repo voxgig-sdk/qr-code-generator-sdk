@@ -8,7 +8,7 @@ Complete API reference for the QrCodeGenerator Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'qr-code-generator_sdk'
+require_relative 'QrCodeGenerator_sdk'
 
 client = QrCodeGeneratorSDK.new(options)
 ```
@@ -96,7 +96,7 @@ qrn = client.Qrn
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Qrn.load({ "id" => "qrn_id" })
+result = client.Qrn.load()
 ```
 
 ### Common Methods

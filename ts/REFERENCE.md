@@ -119,7 +119,7 @@ const qrn = client.Qrn()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Qrn().load({ id: 'qrn_id' })
+const result = await client.Qrn().load()
 ```
 
 ### Common Methods

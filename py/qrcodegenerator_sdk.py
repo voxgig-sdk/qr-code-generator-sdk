@@ -221,7 +221,7 @@ class QrCodeGeneratorSDK:
 
 
     def Qrn(self, data=None) -> "QrnEntity":
-        """Entity factory: client.Qrn().list({}) / client.Qrn().load({"id": ...})."""
+        """Entity factory: client.Qrn().list() / client.Qrn().load({"id": ...})."""
         from entity.qrn_entity import QrnEntity
         return QrnEntity(self, data)
 

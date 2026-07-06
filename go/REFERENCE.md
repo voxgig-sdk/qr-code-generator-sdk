@@ -100,7 +100,7 @@ qrn := client.Qrn(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Qrn(nil).Load(map[string]any{"id": "qrn_id"}, nil)
+result, err := client.Qrn(nil).Load(nil, nil)
 ```
 
 ### Common Methods

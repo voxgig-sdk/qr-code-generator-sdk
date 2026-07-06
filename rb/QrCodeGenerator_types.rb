@@ -12,7 +12,7 @@
 class Qrn
 end
 
-# Match filter for Qrn#load (any subset of Qrn fields).
+# Request payload for Qrn#load.
 class QrnLoadMatch
 end
 

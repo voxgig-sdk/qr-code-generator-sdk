@@ -8,5 +8,6 @@
 export interface Qrn {
 }
 
-export type QrnLoadMatch = Partial<Qrn>
+export interface QrnLoadMatch {
+}
 
