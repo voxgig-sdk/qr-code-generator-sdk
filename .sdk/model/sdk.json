@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -213,14 +210,17 @@
           "email": "[email protected]"
         },
         "description": "This API allows users to generate QR codes based on specified data and size. You can customize the output by providing the data to encode and the desired dimensions in pixels.",
+        "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
             "description": "Production server",
             "url": "https://api.apgy.in"
           }
         ],
+        "summary": "This API allows users to generate QR codes based on specified data and size.",
         "title": "QR Code Generator",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "website": "https://api.apgy.in/qr/documentation.html"
       },
       "option": {},
       "target": {
@@ -273,6 +273,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -323,6 +326,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

@@ -91,6 +91,7 @@ same parameters as `Direct()`.
 
 ```go
 qrn := client.Qrn(nil)
+fmt.Println(qrn.GetName()) // "qrn"
 ```
 
 ### Operations
@@ -101,6 +102,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Qrn(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods

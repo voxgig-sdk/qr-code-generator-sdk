@@ -15,9 +15,9 @@ main: {
           url: "https://api.apgy.in"
         }
       ]
+      summary: "This API allows users to generate QR codes based on specified data and size."
       title: "QR Code Generator"
       version: "1.0.0"
+      website: "https://api.apgy.in/qr/documentation.html"
     }
   }
-}
-
