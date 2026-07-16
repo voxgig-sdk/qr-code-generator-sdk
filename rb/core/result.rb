@@ -3,7 +3,8 @@
 require_relative '../utility/struct/voxgig_struct'
 
 class QrCodeGeneratorResult
-  attr_accessor :ok, :status, :status_text, :headers, :body, :err, :resdata, :resmatch
+  attr_accessor :ok, :status, :status_text, :headers, :body, :err, :resdata, :resmatch,
+                :paging, :streaming, :stream
 
   def initialize(resmap = {})
     resmap ||= {}
