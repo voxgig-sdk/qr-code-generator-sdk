@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- QrCodeGenerator SDK exists test
 
 local sdk = require("qr-code-generator_sdk")
 
