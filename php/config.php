@@ -60,6 +60,7 @@ class QrCodeGeneratorConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/qr/',
                   'parts' => [

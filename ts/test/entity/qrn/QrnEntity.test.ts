@@ -26,8 +26,8 @@ import {
 describe('QrnEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when QRCODEGENERATOR_TEST_LIVE=TRUE.
-  afterEach(liveDelay('QRCODEGENERATOR_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when QR_CODE_GENERATOR_TEST_LIVE=TRUE.
+  afterEach(liveDelay('QR_CODE_GENERATOR_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = QrCodeGeneratorSDK.test()
@@ -62,7 +62,7 @@ describe('QrnEntity', async () => {
     // LOAD
     const qrn_ref01_ent = client.Qrn()
     const qrn_ref01_match_dt0: any = {}
-    const qrn_ref01_data_dt0 = await qrn_ref01_ent.load(qrn_ref01_match_dt0)
+    const qrn_ref01_data_dt0 = (await qrn_ref01_ent.load(qrn_ref01_match_dt0)).data()
     assert(null != qrn_ref01_data_dt0)
 
 

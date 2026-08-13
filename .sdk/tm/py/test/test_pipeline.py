@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import QrCodeGeneratorSDK
-from core.error import QrCodeGeneratorError
-from core.result import QrCodeGeneratorResult
-from core.response import QrCodeGeneratorResponse
-from core.spec import QrCodeGeneratorSpec
-from feature.base_feature import QrCodeGeneratorBaseFeature
+from projectname_sdk.core.error import QrCodeGeneratorError
+from projectname_sdk.core.result import QrCodeGeneratorResult
+from projectname_sdk.core.response import QrCodeGeneratorResponse
+from projectname_sdk.core.spec import QrCodeGeneratorSpec
+from projectname_sdk.feature.base_feature import QrCodeGeneratorBaseFeature
 
 
 def _client():

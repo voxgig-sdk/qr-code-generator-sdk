@@ -23,8 +23,8 @@ module QrCodeGeneratorTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("QRCODEGENERATOR_TEST_LIVE")
-    override = getenv("QRCODEGENERATOR_TEST_OVERRIDE")
+    live = getenv("QR_CODE_GENERATOR_TEST_LIVE")
+    override = getenv("QR_CODE_GENERATOR_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module QrCodeGeneratorTestRunner
       end
     end
 
-    explain = getenv("QRCODEGENERATOR_TEST_EXPLAIN")
-    m["QRCODEGENERATOR_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("QR_CODE_GENERATOR_TEST_EXPLAIN")
+    m["QR_CODE_GENERATOR_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

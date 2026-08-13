@@ -43,8 +43,8 @@ class QrCodeGeneratorTestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('QRCODEGENERATOR_TEST_LIVE');
-        $override = self::getenv('QRCODEGENERATOR_TEST_OVERRIDE');
+        $live = self::getenv('QR_CODE_GENERATOR_TEST_LIVE');
+        $override = self::getenv('QR_CODE_GENERATOR_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class QrCodeGeneratorTestRunner
             }
         }
 
-        $explain = self::getenv('QRCODEGENERATOR_TEST_EXPLAIN');
+        $explain = self::getenv('QR_CODE_GENERATOR_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['QRCODEGENERATOR_TEST_EXPLAIN'] = $explain;
+            $m['QR_CODE_GENERATOR_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;

@@ -72,11 +72,11 @@ function qrn_direct_setup($mockres)
     $calls = new \ArrayObject();
 
     $env = Runner::env_override([
-        "QRCODEGENERATOR_TEST_QRN_ENTID" => [],
-        "QRCODEGENERATOR_TEST_LIVE" => "FALSE",
+        "QR_CODE_GENERATOR_TEST_QRN_ENTID" => [],
+        "QR_CODE_GENERATOR_TEST_LIVE" => "FALSE",
     ]);
 
-    $live = $env["QRCODEGENERATOR_TEST_LIVE"] === "TRUE";
+    $live = $env["QR_CODE_GENERATOR_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [

@@ -38,9 +38,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = QrCodeGeneratorSDK.test()
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = QrCodeGeneratorSDK.test({
+  entity: {
+    qrn: {
+      test01: { id: 'test01' },
+    },
+  },
+})
 const qrn = await client.Qrn().load()
-// qrn is a bare Qrn populated with mock data
+// qrn is the Qrn entity, populated with mock data
+// — call qrn.data() for the record itself
 console.log(qrn)
 ```
 
@@ -182,7 +191,7 @@ require_once 'qrcodegenerator_sdk.php';
 $client = new QrCodeGeneratorSDK();
 
 
-// Load a specific qrn (returns the bare record; throws on error)
+// Load a specific qrn (returns the ENTITY; call data_get() for the record; throws on error)
 $qrn = $client->Qrn()->load();
 print_r($qrn);
 ```
@@ -210,7 +219,7 @@ require_relative "QrCodeGenerator_sdk"
 client = QrCodeGeneratorSDK.new
 
 
-# Load a specific qrn (returns the bare record; raises on error)
+# Load a specific qrn (returns the ENTITY; call data_get for the record)
 qrn = client.Qrn.load()
 puts qrn
 ```
@@ -344,6 +353,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://api.apgy.in](https://api.apgy.in)
 

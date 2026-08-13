@@ -62,8 +62,8 @@ function makeCtrl(explain: boolean) {
 // Overrides configuration values with environment variables if available
 function envOverride(m: Record<string, any>) {
   if (
-    'TRUE' === process.env.QRCODEGENERATOR_TEST_LIVE ||
-    'TRUE' === process.env.QRCODEGENERATOR_TEST_OVERRIDE
+    'TRUE' === process.env.QR_CODE_GENERATOR_TEST_LIVE ||
+    'TRUE' === process.env.QR_CODE_GENERATOR_TEST_OVERRIDE
   ) {
     Object.entries(m).map(n => {
       let envval = process.env[n[0]]
@@ -74,7 +74,7 @@ function envOverride(m: Record<string, any>) {
     })
   }
 
-  m.QRCODEGENERATOR_TEST_EXPLAIN = process.env.QRCODEGENERATOR_TEST_EXPLAIN || m.QRCODEGENERATOR_TEST_EXPLAIN
+  m.QR_CODE_GENERATOR_TEST_EXPLAIN = process.env.QR_CODE_GENERATOR_TEST_EXPLAIN || m.QR_CODE_GENERATOR_TEST_EXPLAIN
 
   return m
 }

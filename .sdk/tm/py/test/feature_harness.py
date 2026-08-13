@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import QrCodeGeneratorControl
-from core.error import QrCodeGeneratorError
-from core.result import QrCodeGeneratorResult
-from core.spec import QrCodeGeneratorSpec
+from projectname_sdk.config import make_config
+from projectname_sdk.features import _make_feature
+from projectname_sdk.core.control import QrCodeGeneratorControl
+from projectname_sdk.core.error import QrCodeGeneratorError
+from projectname_sdk.core.result import QrCodeGeneratorResult
+from projectname_sdk.core.spec import QrCodeGeneratorSpec
 
 
 # True when this SDK was generated with the named feature.

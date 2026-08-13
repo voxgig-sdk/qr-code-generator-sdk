@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from qrcodegenerator_sdk.utility.voxgig_struct import voxgig_struct as vs
 from qrcodegenerator_sdk import QrCodeGeneratorSDK
-from core import helpers
+from qrcodegenerator_sdk.core import helpers
 from test import runner
 
 
@@ -62,11 +62,11 @@ def _qrn_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "QRCODEGENERATOR_TEST_QRN_ENTID": {},
-        "QRCODEGENERATOR_TEST_LIVE": "FALSE",
+        "QR_CODE_GENERATOR_TEST_QRN_ENTID": {},
+        "QR_CODE_GENERATOR_TEST_LIVE": "FALSE",
     })
 
-    live = env.get("QRCODEGENERATOR_TEST_LIVE") == "TRUE"
+    live = env.get("QR_CODE_GENERATOR_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {

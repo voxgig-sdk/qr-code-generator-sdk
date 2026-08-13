@@ -19,11 +19,15 @@ import {
 describe('QrnDirect', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when QRCODEGENERATOR_TEST_LIVE=TRUE.
-  afterEach(liveDelay('QRCODEGENERATOR_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when QR_CODE_GENERATOR_TEST_LIVE=TRUE.
+  afterEach(liveDelay('QR_CODE_GENERATOR_TEST_LIVE'))
 
   test('direct-exists', async () => {
     const sdk = new QrCodeGeneratorSDK({
+      // Concrete base: a live construction must satisfy any server
+      // variables a templated base URL declares; overriding base with a
+      // literal (as the direct flow tests do) sidesteps the requirement.
+      base: 'http://localhost:8080',
       system: { fetch: async () => ({}) }
     })
     assert('function' === typeof sdk.direct)
@@ -77,17 +81,17 @@ function directSetup(mockres?: any) {
   const calls: any[] = []
 
   const env = envOverride({
-    'QRCODEGENERATOR_TEST_QRN_ENTID': {},
-    'QRCODEGENERATOR_TEST_LIVE': 'FALSE',
+    'QR_CODE_GENERATOR_TEST_QRN_ENTID': {},
+    'QR_CODE_GENERATOR_TEST_LIVE': 'FALSE',
   })
 
-  const live = 'TRUE' === env.QRCODEGENERATOR_TEST_LIVE
+  const live = 'TRUE' === env.QR_CODE_GENERATOR_TEST_LIVE
 
   if (live) {
     const client = new QrCodeGeneratorSDK({
     })
 
-    let idmap: any = env['QRCODEGENERATOR_TEST_QRN_ENTID']
+    let idmap: any = env['QR_CODE_GENERATOR_TEST_QRN_ENTID']
     if ('string' === typeof idmap && idmap.startsWith('{')) {
       idmap = JSON.parse(idmap)
     }

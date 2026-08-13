@@ -34,7 +34,7 @@ client = QrCodeGeneratorSDK.new
 
 ```ruby
 begin
-  # load returns the bare Qrn record (raises on error).
+  # load returns the ENTITY — call data_get for the Qrn record (raises on error).
   qrn = client.Qrn.load()
   puts qrn
 rescue => err
@@ -117,7 +117,8 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = QrCodeGeneratorSDK.test
 
-# Entity ops return the bare mock record (raises on error).
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
 qrn = client.Qrn.load()
 puts qrn
 ```
@@ -257,7 +258,7 @@ Create an instance: `qrn = client.Qrn`
 #### Example: Load
 
 ```ruby
-# load returns the bare Qrn record (raises on error).
+# load returns the ENTITY — call data_get for the Qrn record (raises on error).
 qrn = client.Qrn.load()
 ```
 

@@ -67,11 +67,11 @@ function qrn_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["QRCODEGENERATOR_TEST_QRN_ENTID"] = {},
-    ["QRCODEGENERATOR_TEST_LIVE"] = "FALSE",
+    ["QR_CODE_GENERATOR_TEST_QRN_ENTID"] = {},
+    ["QR_CODE_GENERATOR_TEST_LIVE"] = "FALSE",
   })
 
-  local live = env["QRCODEGENERATOR_TEST_LIVE"] == "TRUE"
+  local live = env["QR_CODE_GENERATOR_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {

@@ -121,7 +121,8 @@ Create a mock client for unit testing — no server required:
 const client = QrCodeGeneratorSDK.test()
 
 const qrn = await client.Qrn().load()
-// qrn is a bare entity populated with mock response data
+// qrn is the entity, populated with mock response data
+// — call qrn.data() for the record itself
 console.log(qrn)
 ```
 

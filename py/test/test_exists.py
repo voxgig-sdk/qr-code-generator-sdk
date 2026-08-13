@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# QrCodeGenerator SDK exists test
 
 import pytest
 from qrcodegenerator_sdk import QrCodeGeneratorSDK
