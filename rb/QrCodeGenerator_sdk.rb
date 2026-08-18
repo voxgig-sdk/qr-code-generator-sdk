@@ -28,7 +28,7 @@ class QrCodeGeneratorSDK
     utility = QrCodeGeneratorUtility.new
     @_utility = utility
 
-    config = QrCodeGeneratorConfig.make_config
+    config = QrCodeGeneratorConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

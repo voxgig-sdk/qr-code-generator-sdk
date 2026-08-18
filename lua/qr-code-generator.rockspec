@@ -23,6 +23,7 @@ build = {
   modules = {
     ["qr-code-generator_sdk"] = "qr-code-generator_sdk.lua",
     ["config"] = "config.lua",
+    ["config_shared"] = "config_shared.lua",
     ["features"] = "features.lua",
   }
 }

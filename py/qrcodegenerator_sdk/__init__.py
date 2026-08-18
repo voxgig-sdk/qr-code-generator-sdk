@@ -23,8 +23,8 @@ class QrCodeGeneratorSDK:
         utility = QrCodeGeneratorUtility()
         self._utility = utility
 
-        from qrcodegenerator_sdk.config import make_config
-        config = make_config()
+        from qrcodegenerator_sdk.config import shared_config
+        config = shared_config()
 
         self._rootctx = utility.make_context({
             "client": self,

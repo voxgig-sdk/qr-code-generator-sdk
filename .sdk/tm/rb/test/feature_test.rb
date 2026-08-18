@@ -15,7 +15,7 @@ require_relative "../QrCodeGenerator_sdk"
 module QrCodeGeneratorFeatureHarness
   # True when this SDK was generated with the named feature.
   def self.has_feature?(name)
-    f = QrCodeGeneratorConfig.make_config["feature"]
+    f = QrCodeGeneratorConfig.shared_config["feature"]
     f.is_a?(Hash) && !f[name].nil?
   end
 

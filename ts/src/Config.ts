@@ -36,7 +36,7 @@ class Config {
 
 
   options = {
-    base: 'https://api.apgy.in',
+    base: "https://api.apgy.in",
 
     headers: {
       "content-type": "application/json"
@@ -61,11 +61,9 @@ class Config {
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "example": "TEXT",
                     "kind": "query",
                     "name": "data",
@@ -74,7 +72,6 @@ class Config {
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": 300,
                     "kind": "query",
                     "name": "size",
@@ -99,11 +96,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
