@@ -19,6 +19,9 @@ module QrCodeGeneratorConfig
     {
       "main" => {
         "name" => "QrCodeGenerator",
+        "slug" => "qr-code-generator",
+        "version" => "0.0.1",
+        "target" => "rb",
       },
       "feature" => {
         "test" => {

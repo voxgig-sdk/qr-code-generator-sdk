@@ -33,6 +33,9 @@ class QrCodeGeneratorConfig
         return [
             "main" => [
                 "name" => "QrCodeGenerator",
+                "slug" => "qr-code-generator",
+                "version" => "0.0.1",
+                "target" => "php",
             ],
             "feature" => [
                 "test" => [
