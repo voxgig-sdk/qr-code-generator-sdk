@@ -21,4 +21,5 @@ class Qrn(TypedDict):
 
 
 class QrnLoadMatch(TypedDict):
-    pass
+    data: str
+    size: int

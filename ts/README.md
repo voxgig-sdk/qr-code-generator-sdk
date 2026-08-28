@@ -39,7 +39,7 @@ const client = new QrCodeGeneratorSDK()
 
 ```ts
 try {
-  const qrn = await client.Qrn().load()
+  const qrn = await client.Qrn().load({ data: 'example_data', size: 1 })
   console.log(qrn)
 } catch (err) {
   console.error('load failed:', err)
@@ -53,7 +53,7 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const qrn = await client.Qrn().load()
+  const qrn = await client.Qrn().load({ data: "example", size: 1 })
   console.log(qrn)
 } catch (err) {
   console.error('load failed:', err)
@@ -120,7 +120,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = QrCodeGeneratorSDK.test()
 
-const qrn = await client.Qrn().load()
+const qrn = await client.Qrn().load({ data: 'example_data', size: 1 })
 // qrn is the entity, populated with mock response data
 // — call qrn.data() for the record itself
 console.log(qrn)
@@ -141,7 +141,7 @@ Entity instances remember their last match and data:
 const entity = client.Qrn()
 
 // First call runs the operation and stores its result
-await entity.load()
+await entity.load({ data: 'example_data', size: 1 })
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
@@ -308,8 +308,31 @@ Create an instance: `const qrn = client.Qrn()`
 #### Example: Load
 
 ```ts
-const qrn = await client.Qrn().load()
+const qrn = await client.Qrn().load({ data: 'data', size: 1 })
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced
@@ -382,7 +405,7 @@ calls on the same instance can rely on this state.
 
 ```ts
 const qrn = client.Qrn()
-await qrn.load()
+await qrn.load({ data: "example", size: 1 })
 
 // qrn.data() now returns the qrn data from the last `load`
 // qrn.match() returns the last match criteria

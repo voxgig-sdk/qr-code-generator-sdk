@@ -36,7 +36,7 @@ $client = new QrCodeGeneratorSDK();
 ```php
 try {
     // load() returns the ENTITY — call data_get() for the Qrn record (throws on error).
-    $qrn = $client->Qrn()->load();
+    $qrn = $client->Qrn()->load(["data" => "example_data", "size" => 1]);
     print_r($qrn);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -51,7 +51,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $qrn = $client->Qrn()->load();
+    $qrn = $client->Qrn()->load(["data" => "example", "size" => 1]);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -125,7 +125,7 @@ $client = QrCodeGeneratorSDK::test();
 
 // Entity ops return the ENTITY (throws on error);
 // call data_get() for the mock record.
-$qrn = $client->Qrn()->load();
+$qrn = $client->Qrn()->load(["data" => "example", "size" => 1]);
 print_r($qrn);
 ```
 
@@ -269,8 +269,31 @@ Create an instance: `$qrn = $client->Qrn();`
 
 ```php
 // load() returns the ENTITY — call data_get() for the Qrn record (throws on error).
-$qrn = $client->Qrn()->load();
+$qrn = $client->Qrn()->load(["data" => "data", "size" => 1]);
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced
@@ -350,7 +373,7 @@ stores the returned data and match criteria internally.
 
 ```php
 $qrn = $client->Qrn();
-$qrn->load();
+$qrn->load(["data" => "example", "size" => 1]);
 
 // $qrn->data_get() now returns the qrn data from the last load
 // $qrn->match_get() returns the last match criteria

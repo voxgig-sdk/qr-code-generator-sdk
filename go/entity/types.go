@@ -18,6 +18,8 @@ type Qrn struct {
 
 // QrnLoadMatch is the typed request payload for Qrn.LoadTyped.
 type QrnLoadMatch struct {
+	Data string `json:"data"`
+	Size int `json:"size"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

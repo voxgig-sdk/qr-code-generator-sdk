@@ -20,5 +20,7 @@ class Qrn
 /** Request payload for Qrn#load. */
 class QrnLoadMatch
 {
+    public string $data;
+    public int $size;
 }
 

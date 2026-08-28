@@ -9,6 +9,8 @@
 ---@class Qrn
 
 ---@class QrnLoadMatch
+---@field data string
+---@field size number
 
 local M = {}
 

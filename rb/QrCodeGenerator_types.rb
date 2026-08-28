@@ -13,6 +13,15 @@ class Qrn
 end
 
 # Request payload for Qrn#load.
-class QrnLoadMatch
-end
+#
+# @!attribute [rw] data
+#   @return [String]
+#
+# @!attribute [rw] size
+#   @return [Integer]
+QrnLoadMatch = Struct.new(
+  :data,
+  :size,
+  keyword_init: true
+)
 
