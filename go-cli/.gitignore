@@ -1,3 +1,4 @@
 /dist/
 /qr-code-generator-cli
 /go-cli
+.jostraca/

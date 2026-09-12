@@ -87,8 +87,10 @@ class QrCodeGeneratorConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/qr/',
-                  'parts' => [
-                    'qr',
+                  'segments' => [
+                    [
+                      'lit' => 'qr',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -99,6 +101,9 @@ class QrCodeGeneratorConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'qr',
                   ],
                 ],
               ],

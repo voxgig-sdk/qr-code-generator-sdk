@@ -73,8 +73,10 @@ module QrCodeGeneratorConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/qr/",
-                  "parts" => [
-                    "qr",
+                  "segments" => [
+                    {
+                      "lit" => "qr",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -86,6 +88,9 @@ module QrCodeGeneratorConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "qr",
+                  ],
                 },
               ],
             },

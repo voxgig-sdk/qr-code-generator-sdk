@@ -32,8 +32,10 @@ main: kit: entity: qrn: {
           }
           method: "GET"
           orig: "/qr/"
-          parts: [
-            "qr"
+          segments: [
+            {
+              lit: "qr"
+            }
           ]
           select: {
             exist: [
