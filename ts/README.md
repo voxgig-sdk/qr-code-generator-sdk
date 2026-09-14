@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { QrCodeGeneratorSDK } from '@voxgig-sdk/qr-code-generator'
+import { QrCodeGeneratorSDK } from '@voxgig-sdk/qr-code-generator-sdk'
 
 const client = new QrCodeGeneratorSDK()
 ```
@@ -394,7 +394,7 @@ qr-code-generator/
 Import the SDK from the package root:
 
 ```ts
-import { QrCodeGeneratorSDK } from '@voxgig-sdk/qr-code-generator'
+import { QrCodeGeneratorSDK } from '@voxgig-sdk/qr-code-generator-sdk'
 ```
 
 ### Entity state

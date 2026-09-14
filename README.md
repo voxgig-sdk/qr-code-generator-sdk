@@ -105,7 +105,7 @@ local result, err = client:Qrn():load({ data = "example", size = 1 })
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/qr-code-generator` | publish pending — [install from git tag](https://github.com/voxgig-sdk/qr-code-generator-sdk/releases) |
+| TypeScript | `@voxgig-sdk/qr-code-generator-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/qr-code-generator-sdk/releases) |
 | Python | `voxgig-sdk-qr-code-generator` | publish pending — [install from git tag](https://github.com/voxgig-sdk/qr-code-generator-sdk/releases) |
 | PHP | `voxgig-sdk/qr-code-generator` | publish pending — [install from git tag](https://github.com/voxgig-sdk/qr-code-generator-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/qr-code-generator-sdk/go` | `go get github.com/voxgig-sdk/qr-code-generator-sdk/go@latest` |
@@ -119,7 +119,7 @@ local result, err = client:Qrn():load({ data = "example", size = 1 })
 ### TypeScript
 
 ```ts
-import { QrCodeGeneratorSDK } from '@voxgig-sdk/qr-code-generator'
+import { QrCodeGeneratorSDK } from '@voxgig-sdk/qr-code-generator-sdk'
 
 const client = new QrCodeGeneratorSDK()
 
