@@ -16,5 +16,67 @@
     "qrn": {
       "qrn_ref01": {}
     }
+  },
+  "requests": {
+    "GET /qr/": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "generateQRCode",
+        "parameters": [
+          {
+            "description": "The data to encode in the QR code",
+            "example": "TEXT",
+            "in": "query",
+            "name": "data",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The size of the QR code in pixels (width and height)",
+            "example": 300,
+            "in": "query",
+            "name": "size",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "image/png": {
+                "schema": {
+                  "format": "binary",
+                  "type": "string"
+                }
+              }
+            },
+            "description": "Successfully generated QR code image"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message describing the invalid parameter",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Invalid parameters - error message specifying the issue"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

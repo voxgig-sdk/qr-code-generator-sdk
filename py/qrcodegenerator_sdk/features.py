@@ -1,12 +1,18 @@
 # QrCodeGenerator SDK feature factory
 
 from qrcodegenerator_sdk.feature.base_feature import QrCodeGeneratorBaseFeature
+from qrcodegenerator_sdk.feature.ratelimit_feature import QrCodeGeneratorRatelimitFeature
+from qrcodegenerator_sdk.feature.retry_feature import QrCodeGeneratorRetryFeature
 from qrcodegenerator_sdk.feature.test_feature import QrCodeGeneratorTestFeature
+from qrcodegenerator_sdk.feature.timeout_feature import QrCodeGeneratorTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: QrCodeGeneratorBaseFeature(),
+    "ratelimit": lambda: QrCodeGeneratorRatelimitFeature(),
+    "retry": lambda: QrCodeGeneratorRetryFeature(),
     "test": lambda: QrCodeGeneratorTestFeature(),
+    "timeout": lambda: QrCodeGeneratorTimeoutFeature(),
 }
 
 
