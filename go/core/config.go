@@ -96,26 +96,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": "TEXT",
-											"kind": "query",
-											"name": "data",
-											"orig": "data",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": 300,
-											"kind": "query",
-											"name": "size",
-											"orig": "size",
-											"reqd": true,
-											"type": "`$INTEGER`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/qr/",
@@ -124,18 +104,39 @@ func MakeConfig() map[string]any {
 										"lit": "qr",
 									},
 								},
+								"parts": []any{
+									"qr",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "data",
+											"orig": "data",
+											"type": "`$STRING`",
+											"kind": "query",
+											"reqd": true,
+											"example": "TEXT",
+										},
+										map[string]any{
+											"name": "size",
+											"orig": "size",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"reqd": true,
+											"example": 300,
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"data",
 										"size",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"qr",
 								},
 							},
 						},

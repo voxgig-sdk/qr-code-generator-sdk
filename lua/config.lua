@@ -92,26 +92,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["example"] = "TEXT",
-                      ["kind"] = "query",
-                      ["name"] = "data",
-                      ["orig"] = "data",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = 300,
-                      ["kind"] = "query",
-                      ["name"] = "size",
-                      ["orig"] = "size",
-                      ["reqd"] = true,
-                      ["type"] = "`$INTEGER`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/qr/",
@@ -120,18 +100,39 @@ local function make_config()
                     ["lit"] = "qr",
                   },
                 },
+                ["parts"] = {
+                  "qr",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "data",
+                      ["orig"] = "data",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                      ["example"] = "TEXT",
+                    },
+                    {
+                      ["name"] = "size",
+                      ["orig"] = "size",
+                      ["type"] = "`$INTEGER`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                      ["example"] = 300,
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "data",
                     "size",
                   },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "qr",
                 },
               },
             },

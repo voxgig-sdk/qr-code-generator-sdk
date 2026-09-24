@@ -1,0 +1,65 @@
+# Entity: qrn
+
+main: kit: entity: qrn: {
+
+  alias: field: {}
+
+  name: "qrn"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /qr/"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: "TEXT"
+                k: "query"
+                n: "data"
+                or: "data"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: 300
+                k: "query"
+                n: "size"
+                or: "size"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/qr/"
+          q: {
+            exist: [
+              "data"
+              "size"
+            ]
+          }
+          s: [
+            {
+              lit: "qr"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+
+}

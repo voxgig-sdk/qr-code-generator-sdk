@@ -121,26 +121,6 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "query": [
-                    {
-                      "example": "TEXT",
-                      "kind": "query",
-                      "name": "data",
-                      "orig": "data",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": 300,
-                      "kind": "query",
-                      "name": "size",
-                      "orig": "size",
-                      "reqd": True,
-                      "type": "`$INTEGER`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/qr/",
@@ -149,19 +129,40 @@ def make_config():
                     "lit": "qr",
                   },
                 ],
+                "parts": [
+                  "qr",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "data",
+                      "orig": "data",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                      "example": "TEXT",
+                    },
+                    {
+                      "name": "size",
+                      "orig": "size",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "reqd": True,
+                      "example": 300,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "data",
                     "size",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "qr",
-                ],
               },
             ],
           },
