@@ -37,6 +37,8 @@ require_once __DIR__ . '/TransformResponse.php';
 
 QrCodeGeneratorUtility::setRegistrar(function (QrCodeGeneratorUtility $u): void {
     $u->clean = [QrCodeGeneratorClean::class, 'call'];
+    $u->clean_add = [QrCodeGeneratorClean::class, 'add'];
+    $u->clean_explain = [QrCodeGeneratorDone::class, 'clean_explain'];
     $u->done = [QrCodeGeneratorDone::class, 'call'];
     $u->make_error = [QrCodeGeneratorMakeError::class, 'call'];
     $u->feature_add = [QrCodeGeneratorFeatureAdd::class, 'call'];

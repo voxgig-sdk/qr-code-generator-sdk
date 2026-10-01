@@ -33,6 +33,8 @@ require_relative 'transform_response'
 
 QrCodeGeneratorUtility.registrar = ->(u) {
   u.clean = QrCodeGeneratorUtilities::Clean
+  u.clean_add = QrCodeGeneratorUtilities::CleanAdd
+  u.clean_explain = QrCodeGeneratorUtilities::CleanExplain
   u.done = QrCodeGeneratorUtilities::Done
   u.make_error = QrCodeGeneratorUtilities::MakeError
   u.feature_add = QrCodeGeneratorUtilities::FeatureAdd
