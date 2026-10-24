@@ -93,6 +93,7 @@ class QrCodeGeneratorConfig
           ],
           'optspec' => [
             'clearTimer' => '`$FUNCTION`',
+            'now' => '`$FUNCTION`',
             'setTimer' => '`$FUNCTION`',
           ],
           'strict' => false,
@@ -159,6 +160,11 @@ class QrCodeGeneratorConfig
                       'data',
                       'size',
                     ],
+                  ],
+                  'response' => [
+                    'binary' => true,
+                    'kind' => 'raw',
+                    'media' => 'image/png',
                   ],
                 ],
               ],

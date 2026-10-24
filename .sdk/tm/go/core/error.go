@@ -12,6 +12,8 @@ type QrCodeGeneratorError struct {
 	Ctx    *Context `json:"-"`
 	Result any
 	Spec   any
+	// The HTTP status, -1 when there was no response.
+	Status int
 }
 
 func NewQrCodeGeneratorError(code string, msg string, ctx *Context) *QrCodeGeneratorError {
@@ -21,7 +23,12 @@ func NewQrCodeGeneratorError(code string, msg string, ctx *Context) *QrCodeGener
 		Code:               code,
 		Msg:                msg,
 		Ctx:                ctx,
+		Status:             -1,
 	}
+}
+
+func (e *QrCodeGeneratorError) NotFound() bool {
+	return 404 == e.Status
 }
 
 func (e *QrCodeGeneratorError) Error() string {
@@ -35,6 +42,7 @@ func (e *QrCodeGeneratorError) Record() map[string]any {
 		"sdk":     e.Sdk,
 		"code":    e.Code,
 		"message": e.Msg,
+		"status":  e.Status,
 		"result":  e.Result,
 		"spec":    e.Spec,
 	}

@@ -43,6 +43,11 @@ main: kit: entity: qrn: {
               "size"
             ]
           }
+          rs: {
+            binary: true
+            kind: "raw"
+            media: "image/png"
+          }
           s: [
             {
               lit: "qr"

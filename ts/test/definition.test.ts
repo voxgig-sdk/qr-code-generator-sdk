@@ -20,9 +20,23 @@ const PLAN: any[] = [
       "size": 300
     },
     "headers": [],
+    "cookies": [],
+    "responseMedia": [
+      "image/png"
+    ],
     "query": [
       "data",
       "size"
+    ],
+    "queryArgs": [
+      {
+        "name": "data",
+        "wire": "data"
+      },
+      {
+        "name": "size",
+        "wire": "size"
+      }
     ],
     "auth": null,
     "status": 200,

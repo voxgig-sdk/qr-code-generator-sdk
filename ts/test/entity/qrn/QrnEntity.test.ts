@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { QrCodeGeneratorSDK, BaseFeature, stdutil } from '../../..'
+import { QrCodeGeneratorSDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,18 @@ describe('QrnEntity', async () => {
   })
 
 
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = QrCodeGeneratorSDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.Qrn().load({"data":1,"size":1} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.QR_CODE_GENERATOR_TEST_LIVE
@@ -51,7 +63,7 @@ describe('QrnEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{},"name":"qrn","op":{"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /qr/","source":"openapi3","version":2},"g":{"query":[{"a":true,"ex":"TEXT","k":"query","n":"data","or":"data","r":true,"t":"`$STRING`","index$":0},{"a":true,"ex":300,"k":"query","n":"size","or":"size","r":true,"t":"`$INTEGER`","index$":1}]},"k":"http","m":"GET","o":"/qr/","q":{"exist":["data","size"]},"r":{},"s":[{"lit":"qr"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"qrn","name__orig":"qrn","Name":"Qrn","name_":"qrn","name-":"qrn","NAME":"QRN","index$":0}, {"active":true,"entity":"qrn","key$":"BasicQrnFlow","kind":"basic","name":"BasicQrnFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"qrn_ref01","srcdatavar":"qrn_ref01_data","suffix":"_dt0"},"m":{},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-qrn_ref01"}}],"index$":0}]}, 'Qrn', {"GET /qr/":{"protocol":"http","parameters":[{"name":"data","in":"query","description":"The data to encode in the QR code","required":true,"schema":{"type":"string"},"example":"TEXT","index$":0},{"name":"size","in":"query","description":"The size of the QR code in pixels (width and height)","required":true,"schema":{"type":"integer","minimum":1},"example":300,"index$":1}]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{},"name":"qrn","op":{"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /qr/","source":"openapi3","version":2},"g":{"query":[{"a":true,"ex":"TEXT","k":"query","n":"data","or":"data","r":true,"t":"`$STRING`","index$":0},{"a":true,"ex":300,"k":"query","n":"size","or":"size","r":true,"t":"`$INTEGER`","index$":1}]},"k":"http","m":"GET","o":"/qr/","q":{"exist":["data","size"]},"r":{},"rs":{"binary":true,"kind":"raw","media":"image/png"},"s":[{"lit":"qr"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"qrn","name__orig":"qrn","Name":"Qrn","name_":"qrn","name-":"qrn","NAME":"QRN","index$":0}, {"active":true,"entity":"qrn","key$":"BasicQrnFlow","kind":"basic","name":"BasicQrnFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"qrn_ref01","srcdatavar":"qrn_ref01_data","suffix":"_dt0"},"m":{},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-qrn_ref01"}}],"index$":0}]}, 'Qrn', {"GET /qr/":{"protocol":"http","parameters":[{"name":"data","in":"query","description":"The data to encode in the QR code","required":true,"schema":{"type":"string"},"example":"TEXT","index$":0},{"name":"size","in":"query","description":"The size of the QR code in pixels (width and height)","required":true,"schema":{"type":"integer","minimum":1},"example":300,"index$":1}]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -72,6 +84,12 @@ describe('QrnEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

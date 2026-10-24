@@ -79,6 +79,7 @@ module QrCodeGeneratorConfig
           },
           "optspec" => {
             "clearTimer" => "`$FUNCTION`",
+            "now" => "`$FUNCTION`",
             "setTimer" => "`$FUNCTION`",
           },
           "strict" => false,
@@ -145,6 +146,11 @@ module QrCodeGeneratorConfig
                       "data",
                       "size",
                     ],
+                  },
+                  "response" => {
+                    "binary" => true,
+                    "kind" => "raw",
+                    "media" => "image/png",
                   },
                 },
               ],

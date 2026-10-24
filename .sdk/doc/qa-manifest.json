@@ -3,5 +3,12 @@
     "SUMMARY.md"
   ],
   "config": ".sdk/doc/qa/vale.ini",
-  "routes": {}
+  "routes": {},
+  "quoted": {
+    "SUMMARY.md": [
+      "Production server",
+      "Successfully generated QR code image",
+      "This API allows users to generate QR codes based on specified data and size. You can customize the output by providing the data to encode and the desired dimensions in pixels."
+    ]
+  }
 }
